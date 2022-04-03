@@ -1,4 +1,6 @@
 import type { NextPage } from 'next';
+import Image from 'next/image';
+import Link from 'next/link';
 
 const Home: NextPage = () => {
   return (
@@ -25,29 +27,51 @@ const Home: NextPage = () => {
       </div>
 
       {/* trending blogs */}
-      <div className='bg-slate-100 p-6'>
-        <div className='card bg-white rounded-lg shadow-md hover:shadow-lg grid grid-cols-[1fr_2fr] gap-2'>
-          <div className='bg-emerald-400 rounded-tl-md rounded-bl-md'>
-            Blog thumb
-          </div>
-          <div className='flex flex-col gap-2 py-2'>
+      <div className='bg-slate-100 p-2'>
+        <Link href={'/blog/1'}>
+        <a>
+        <div className='card bg-white rounded-lg shadow-md hover:shadow-lg grid grid-cols-[auto_1fr] gap-2 items-center'>
+          <Image
+            src={'/blog.jpg'}
+            width={150}
+            height={150}
+            alt='title'
+            className='rounded-tl-md rounded-bl-md'
+          />
+          <div className='flex flex-col gap-2'>
             <h2 className='text-xl font-bold'>
               Lorem ipsum dolor sit, amet consectetur
             </h2>
-            <h3 className='text-sm font-light'>
+            <h3 className='text-sm font-medium'>
               by John Doe{' '}
               <span className='w-1 h-1 p-1 bg-slate-300 rounded-full'>j d</span>
             </h3>
-            <h6 className='text-sm font-extralight text-slate-400'>
+            <h6 className='text-sm font-extralight'>
               published at - 03/04/2022
             </h6>
-            <p>
-              <small className='badge-tag'>#tag1</small>
-              <small className='badge-tag'>#tag2</small>
-            </p>
-            <button className='btn-small w-1/2 mx-auto'>Read more</button>
+
+            <div className='flex gap-2 flex-wrap self-start my-2'>
+              <Link href={`/tag/tag1`}>
+                <a>
+                  <span className='ring-1 ring-slate-400 p-1 rounded-md'>
+                    #tag1
+                  </span>
+                </a>
+              </Link>
+              <Link href={`/tag/tag1`}>
+                <a>
+                  <span className='ring-1 ring-slate-400 p-1 rounded-md'>
+                    #tag2
+                  </span>
+                </a>
+              </Link>
+            </div>
+
+            {/* <button className='btn-small w-1/2 mx-auto'>Read more</button> */}
           </div>
         </div>
+        </a>
+        </Link>
       </div>
     </main>
   );

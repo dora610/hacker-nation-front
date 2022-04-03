@@ -4,7 +4,7 @@
 
 @layer components{
     .btn-primary{
-        @apply bg-emerald-500 p-2 text-white hover:bg-emerald-600 active:bg-emerald-700 rounded-md
+        @apply bg-emerald-600 p-2 text-white hover:bg-emerald-700 active:bg-emerald-800 rounded-md
     }
     .form-input{
         @apply border-2 border-emerald-400 p-2 rounded-md focus:ring-2 focus:ring-emerald-300 focus:outline-none
@@ -15,4 +15,12 @@
     .btn-small{
         @apply bg-emerald-500 px-2 py-1 text-white text-sm hover:bg-emerald-600 active:bg-emerald-700 rounded-md
     }
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
