@@ -5,8 +5,8 @@ import { GrClose } from 'react-icons/gr';
 function Navbar() {
   return (
     <nav className='relative'>
-      <div className='flex justify-between items-baseline py-2 px-6 border-b-2 border-slate-100'>
-      <h1 className='text-xl font-semibold'>CodeStop</h1>
+      <div className='flex justify-between items-baseline py-2 px-4 border-b-2 border-slate-100'>
+      <h1 className='text-sm font-semibold'>{'<'}_hN_{'/>'}</h1>
       <button>
         <GiHamburgerMenu />
       </button>
