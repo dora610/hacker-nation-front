@@ -4,13 +4,39 @@ import path from 'path';
 import { ParsedUrlQuery } from 'querystring';
 import Image from 'next/image';
 import Link from 'next/link';
+import { Blog } from '../../model/Blog';
+import { useRouter } from 'next/router';
+import AuthorInfo from '../../components/AuthorInfo';
+import { HiOutlineBookOpen } from 'react-icons/hi';
+import { Fragment } from 'react';
+import Tag from '../../components/Tag';
+import BadgeBlock from '../../components/BadgeBlock';
 
-function BlogDetails(props: any) {
-  const { title, subtitle, author, published, tag } = props.blog;
+function BlogDetails({ blog }: { blog: Blog }) {
+  const router = useRouter();
+
+  const {
+    title,
+    subtitle,
+    author,
+    published,
+    tags,
+    profilePic,
+    userName,
+    readTime,
+    badges
+  } = blog;
 
   return (
     <div className='flex flex-col gap-2'>
-      <div className='flex justify-between items-center p-4'>
+      <button
+        className='btn-small-outline w-fit ml-4 mt-2'
+        onClick={() => router.back()}
+      >
+        back
+      </button>
+
+      <div className='flex justify-between items-center p-4 bg-slate-50'>
         <h1 className='text-2xl font-bold font-mono'>
           {author}
           {"'s"} Blog
@@ -29,28 +55,28 @@ function BlogDetails(props: any) {
         <h3 className='text-2xl font-semibold text-center'>{subtitle}</h3>
 
         {/* author info */}
-        <div className='flex gap-4'>
-          <h4>{author}</h4>
-          <h4>{published}</h4>
-          <h4>5 mins read</h4>
+        <div className='bg-slate-50 p-2 rounded-lg'>
+          <div className='bg-white py-4 px-8 rounded-md shadow-md shadow-slate-200'>
+            <AuthorInfo
+              profileUrl={profilePic}
+              name={author}
+              username={userName}
+            />
+          </div>
         </div>
 
-        {/* badges */}
-        <h5>Badges</h5>
-        <div className='flex gap-2 bg-emerald-100/80 p-2 rounded-lg'>
-          <span className='bg-white p-2 rounded-md shadow-md shadow-emerald-200 hover:bg-emerald-300 hover:text-white'>
-            badge1
-          </span>
-          <span className='bg-white p-2 rounded-md shadow-md shadow-emerald-200 hover:bg-emerald-300 hover:text-white'>
-            badge2
-          </span>
-          <span className='bg-white p-2 rounded-md shadow-md shadow-emerald-200 hover:bg-emerald-300 hover:text-white'>
-            badgee
-          </span>
+        <div className='flex gap-4 text-sm text-slate-600 ml-4 '>
+          <p>{published}</p>
+          <div className='icon-text-inline'>
+            <HiOutlineBookOpen className='text-lg font-light' />
+            <span>{readTime} mins read</span>
+          </div>
         </div>
+
+        <BadgeBlock badges={badges}/>
 
         {/* main article */}
-        <div className='leading-relaxed my-4 text-lg font-normal font-sans'>
+        <div className='leading-loose my-2 text-lg font-normal font-sans'>
           <p>
             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Itaque
             ducimus, dolorum minima recusandae ipsam ea omnis eligendi esse
@@ -77,16 +103,16 @@ function BlogDetails(props: any) {
         </div>
 
         <div className='flex gap-2 flex-wrap self-start'>
-          {tag &&
-            tag.map((t: string, index: number) => (
-              <Link href={`/tag/${t}`} key={index}>
-                <a>
-                  <span className='ring-1 ring-slate-400 p-1 rounded-md'>
-                    #{t}
-                  </span>
-                </a>
-              </Link>
+        {tags?.length && (
+          <>
+            {tags.slice(0, 3).map((tag: string, index: number) => (
+              <Fragment key={index}>
+                <Tag url={`/tags/${tag}`} tagName={tag} />
+              </Fragment>
             ))}
+
+          </>
+        )}
         </div>
 
         {/* review section */}
@@ -99,7 +125,6 @@ export const getStaticProps: GetStaticProps = async (context) => {
   const data = JSON.parse(
     fs.readFileSync(path.join(process.cwd(), '/data/blog.json'), 'utf8')
   );
-
   const filteredBlog = data.filter(
     (blog: { id: ParsedUrlQuery | undefined }) => blog.id === context.params?.id
   )[0];

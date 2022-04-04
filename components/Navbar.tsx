@@ -7,16 +7,24 @@ function Navbar() {
   const [isCollpased, setIsCollpased] = useState(true);
 
   return (
-    <nav className='relative'>
+    <nav className='relative' onClick={()=>{
+      setIsCollpased(!isCollpased)
+    }}>
       <div className='flex justify-between items-baseline py-2 px-4 border-b-2 border-slate-100'>
         <Link href='/'>
-          <a>
+          <a onClick={(e)=>{
+          setIsCollpased(true);
+          e.stopPropagation()
+        }}>
             <h1 className='text-sm font-semibold'>
               {'<'}_hN_{'/>'}
             </h1>
           </a>
         </Link>
-        <button onClick={() => setIsCollpased(!isCollpased)}>
+        <button onClick={(e)=>{
+          setIsCollpased(false);
+          e.stopPropagation()
+        }}>
           <GiHamburgerMenu />
         </button>
       </div>
@@ -25,7 +33,10 @@ function Navbar() {
           isCollpased ? 'hidden' : 'flex'
         } absolute top-0 right-0 z-20 flex-col gap-5 min-h-screen overflow-y-hidden text-slate-800 font-semibold w-1/3 bg-slate-100 items-baseline py-6 px-6 transition`}
       >
-        <button onClick={() => setIsCollpased(!isCollpased)}>
+        <button onClick={(e)=>{
+          setIsCollpased(true);
+          e.stopPropagation()
+        }}>
           <GrClose />
         </button>
         <li>

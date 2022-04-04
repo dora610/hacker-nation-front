@@ -4,25 +4,13 @@ import React, { Fragment } from 'react';
 import { AiOutlineLike } from 'react-icons/ai';
 import { BsBookmark } from 'react-icons/bs';
 import { HiOutlineBookOpen } from 'react-icons/hi';
+import { Blog } from '../model/Blog';
 import AuthorInfo from './AuthorInfo';
 import Tag from './Tag';
 
-interface Blog {
-  title: string;
-  subtitle: string;
-  author: string;
-  userName: string;
-  published: string;
-  tags: [string];
-  profilePic: string;
-  readTime: number;
-  badges: [string];
-  blogImg: string;
-  likes: number;
-}
-
 const Card = ({ blog }: { blog: Blog }) => {
   const {
+    id,
     title,
     subtitle,
     author,
@@ -58,7 +46,7 @@ const Card = ({ blog }: { blog: Blog }) => {
           ))}
       </div>
 
-      <Link href={'/blog/1'}>
+      <Link href={`/blog/${id}`}>
         <a>
           <h2 className='text-2xl font-bold'>{title}</h2>
         </a>
@@ -94,7 +82,7 @@ const Card = ({ blog }: { blog: Blog }) => {
               </Fragment>
             ))}
 
-            {tags?.length - 3 && <span>+ {tags.length - 3}</span>}
+            {tags?.length - 3 && <span>+{tags.length - 3}</span>}
           </>
         )}
       </div>

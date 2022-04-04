@@ -6,6 +6,12 @@
     .btn-primary{
         @apply bg-emerald-600 p-2 text-white hover:bg-emerald-700 active:bg-emerald-800 rounded-md
     }
+    .btn-primary-rounded{
+        @apply bg-emerald-600 py-2 px-4 text-white font-medium hover:bg-emerald-600 hover:text-white active:bg-emerald-700 active:text-black rounded-3xl
+    }
+    .btn-primary-outline-rounded{
+        @apply border-emerald-500 border-2 py-2 px-4 text-emerald-500 hover:bg-emerald-700 hover:text-white active:bg-emerald-800 rounded-3xl
+    }
     .btn-lg{
         @apply bg-emerald-600 p-4 text-white font-medium hover:bg-emerald-700 active:bg-emerald-800 rounded-3xl
     }
@@ -17,6 +23,9 @@
     }
     .btn-small{
         @apply bg-emerald-500 px-2 py-1 text-white text-sm hover:bg-emerald-600 active:bg-emerald-700 rounded-md
+    }
+    .btn-small-outline{
+        @apply border-emerald-500 border-2 px-2 py-1 text-emerald-500 font-medium text-sm hover:bg-emerald-500 hover:text-white active:bg-emerald-600 active:text-black rounded-md
     }
     .icon-text-inline{
         @apply flex items-center gap-1
