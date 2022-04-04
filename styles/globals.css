@@ -18,6 +18,9 @@
     .icon-text-inline{
         @apply flex items-center gap-1
     }
+    .tag{
+        @apply bg-slate-100 p-1 rounded-lg ring-1 ring-slate-200 text-slate-600 hover:bg-slate-200 hover:text-blue-600
+    }
 }
 
 html,
