@@ -34,7 +34,7 @@ function Navbar() {
           </Link>
         </li>
         <li>
-          <Link href='/explore'>
+          <Link href='/feed'>
             <a>Explore</a>
           </Link>
         </li>

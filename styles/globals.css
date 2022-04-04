@@ -6,6 +6,9 @@
     .btn-primary{
         @apply bg-emerald-600 p-2 text-white hover:bg-emerald-700 active:bg-emerald-800 rounded-md
     }
+    .btn-lg{
+        @apply bg-emerald-600 p-4 text-white font-medium hover:bg-emerald-700 active:bg-emerald-800 rounded-3xl
+    }
     .form-input{
         @apply border-2 border-emerald-400 p-2 rounded-md focus:ring-2 focus:ring-emerald-300 focus:outline-none
     }

@@ -1,51 +1,84 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import React from 'react';
+import React, { Fragment } from 'react';
 import { AiOutlineLike } from 'react-icons/ai';
 import { BsBookmark } from 'react-icons/bs';
 import { HiOutlineBookOpen } from 'react-icons/hi';
 import AuthorInfo from './AuthorInfo';
 import Tag from './Tag';
 
-const Card = () => {
+interface Blog {
+  title: string;
+  subtitle: string;
+  author: string;
+  userName: string;
+  published: string;
+  tags: [string];
+  profilePic: string;
+  readTime: number;
+  badges: [string];
+  blogImg: string;
+  likes: number;
+}
+
+const Card = ({ blog }: { blog: Blog }) => {
+  const {
+    title,
+    subtitle,
+    author,
+    userName,
+    published,
+    tags,
+    profilePic,
+    readTime,
+    badges,
+    blogImg,
+    likes,
+  } = blog;
+  
   return (
     <div className='flex flex-col gap-4 hover:bg-slate-50 px-4 py-6 bg-white'>
       <div className='flex gap-2'>
-        <AuthorInfo profileUrl={'/profile.png'} name={'Ronald Blüthl'} username={'r.bluthl'}/>
+        <AuthorInfo profileUrl={profilePic} name={author} username={userName} />
         <div className='text-sm text-slate-600 ml-4'>
-          <p> Apr 03, 2022</p>
+          <p>{published}</p>
           <div className='icon-text-inline'>
             <HiOutlineBookOpen className='text-lg font-light' />
-            <span>5 mins read</span>
+            <span>{readTime} mins read</span>
           </div>
         </div>
       </div>
 
       <div className='flex gap-2'>
-        <div className='ring-1 ring-slate-300 px-2 rounded-2xl'>featured</div>
+        {badges?.length &&
+          badges.map((badge: string, index: number) => (
+            <div key={index} className='ring-1 ring-slate-300 px-2 rounded-2xl'>
+              {badge}
+            </div>
+          ))}
       </div>
 
       <Link href={'/blog/1'}>
         <a>
-          <h2 className='text-2xl font-bold'>How to implement better APIs</h2>
+          <h2 className='text-2xl font-bold'>{title}</h2>
         </a>
       </Link>
       <h6 className='overflow-x-hidden whitespace-nowrap text-ellipsis w-96 text-slate-600'>
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Adipisci,
-        maiores!
+        {subtitle}
       </h6>
-      <Image
-        src={'/blog.jpg'}
-        width={100}
-        height={200}
-        // layout='responsive'
-        alt='blog post'
-        className='rounded-md'
-      />
+      <div className='w-full object-cover'>
+        <Image
+          src={blogImg}
+          width={640}
+          height={340}
+          alt='blog post'
+          className='rounded-md'
+        />
+      </div>
 
       <div className='flex gap-2'>
         <span className='icon-text-inline'>
-          <AiOutlineLike /> <span> 5</span>
+          <AiOutlineLike /> <span>{likes}</span>
         </span>
       </div>
 
@@ -53,9 +86,17 @@ const Card = () => {
         <button>
           <BsBookmark />
         </button>
-        <Tag url={'/tag/1'} tagName={'tag1'}/>
-        <Tag url={'/tag/2'} tagName={'tag2'}/>
-        <span>+2</span>
+        {tags?.length && (
+          <>
+            {tags.slice(0, 3).map((tag: string, index: number) => (
+              <Fragment key={index}>
+                <Tag url={`/tags/${tag}`} tagName={tag} />
+              </Fragment>
+            ))}
+
+            {tags?.length - 3 && <span>+ {tags.length - 3}</span>}
+          </>
+        )}
       </div>
     </div>
   );
