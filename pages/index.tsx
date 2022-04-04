@@ -1,6 +1,10 @@
 import type { NextPage } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
+import Card from '../components/Card';
+import { MdOutlineFeed } from 'react-icons/md';
+import { AiOutlineStar } from 'react-icons/ai';
+import { BsClockHistory } from 'react-icons/bs';
 
 const Home: NextPage = () => {
   return (
@@ -26,52 +30,22 @@ const Home: NextPage = () => {
         <button className='btn-primary'>Search</button>
       </div>
 
-      {/* trending blogs */}
-      <div className='bg-slate-100 p-2'>
-        <Link href={'/blog/1'}>
-        <a>
-        <div className='card bg-white rounded-lg shadow-md hover:shadow-lg grid grid-cols-[auto_1fr] gap-2 items-center'>
-          <Image
-            src={'/blog.jpg'}
-            width={150}
-            height={150}
-            alt='title'
-            className='rounded-tl-md rounded-bl-md'
-          />
-          <div className='flex flex-col gap-2'>
-            <h2 className='text-xl font-bold'>
-              Lorem ipsum dolor sit, amet consectetur
-            </h2>
-            <h3 className='text-sm font-medium'>
-              by John Doe{' '}
-              <span className='w-1 h-1 p-1 bg-slate-300 rounded-full'>j d</span>
-            </h3>
-            <h6 className='text-sm font-extralight'>
-              published at - 03/04/2022
-            </h6>
-
-            <div className='flex gap-2 flex-wrap self-start my-2'>
-              <Link href={`/tag/tag1`}>
-                <a>
-                  <span className='ring-1 ring-slate-400 p-1 rounded-md'>
-                    #tag1
-                  </span>
-                </a>
-              </Link>
-              <Link href={`/tag/tag1`}>
-                <a>
-                  <span className='ring-1 ring-slate-400 p-1 rounded-md'>
-                    #tag2
-                  </span>
-                </a>
-              </Link>
-            </div>
-
-            {/* <button className='btn-small w-1/2 mx-auto'>Read more</button> */}
-          </div>
+      <div className='flex gap-5 text-slate-600 font-medium ml-2 border-b-2 border-slate-100 p-2'>
+        <div className='icon-text-inline'>
+          <MdOutlineFeed /> <h3>Trending</h3>
         </div>
-        </a>
-        </Link>
+        <div className='icon-text-inline'>
+          <AiOutlineStar /> <h3>Featured</h3>
+        </div>
+        <div className='icon-text-inline'>
+          <BsClockHistory /> <h3>Recent</h3>
+        </div>
+      </div>
+
+      {/* trending blogs */}
+      <div className='space-y-0.5 bg-slate-200'>
+        <Card />
+        <Card />
       </div>
     </main>
   );

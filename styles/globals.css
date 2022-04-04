@@ -15,6 +15,9 @@
     .btn-small{
         @apply bg-emerald-500 px-2 py-1 text-white text-sm hover:bg-emerald-600 active:bg-emerald-700 rounded-md
     }
+    .icon-text-inline{
+        @apply flex items-center gap-1
+    }
 }
 
 html,
