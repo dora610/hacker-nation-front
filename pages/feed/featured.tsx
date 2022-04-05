@@ -2,6 +2,7 @@ import { readFileSync } from 'fs';
 import { GetStaticProps } from 'next';
 import path from 'path';
 import React, { Fragment } from 'react';
+import BlogList from '../../components/BlogList';
 import Card from '../../components/Card';
 import FeedHeader from '../../components/FeedHeader';
 import { Blog } from '../../model/Blog';
@@ -11,17 +12,7 @@ function Featured({ blogs }: { blogs: [Blog] }) {
     <div>
       <FeedHeader activeTab='featured' />
 
-      <div className='space-y-0.5 bg-slate-200'>
-        {blogs?.length ? (
-          blogs.map((blog, index) => (
-            <Fragment key={index}>
-              <Card blog={blog} />
-            </Fragment>
-          ))
-        ) : (
-          <h2>No Featured blog found</h2>
-        )}
-      </div>
+      <BlogList blogs={blogs}/>
     </div>
   );
 }

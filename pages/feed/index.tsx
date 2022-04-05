@@ -6,6 +6,7 @@ import { AiOutlineStar } from 'react-icons/ai';
 import { BsClockHistory } from 'react-icons/bs';
 import { FaHashtag } from 'react-icons/fa';
 import { MdOutlineFeed } from 'react-icons/md';
+import BlogList from '../../components/BlogList';
 import Card from '../../components/Card';
 import FeedHeader from '../../components/FeedHeader';
 import TabElement from '../../components/TabElement';
@@ -21,16 +22,8 @@ function FeedSection({
   return (
     <div>
       <FeedHeader activeTab={activeTab} />
-
-      {/* trending blogs */}
-      <div className='space-y-0.5 bg-slate-200'>
-        {blogs?.length &&
-          blogs.map((blog, index) => (
-            <Fragment key={index}>
-              <Card blog={blog} />
-            </Fragment>
-          ))}
-      </div>
+      
+      <BlogList blogs={blogs}/>
     </div>
   );
 }

@@ -3,7 +3,7 @@ import Link from 'next/link';
 import React from 'react';
 import { IoMdAdd } from 'react-icons/io';
 
-function TagCard({ tag }: { tag: any }) {
+function TagRow({ tag }: { tag: any }) {
   return (
     <div className='grid grid-cols-[3rem_1fr_3rem] gap-3 bg-slate-100 p-4 rounded-lg h-20'>
       <Link href={`/tag/${tag?.tagName}`}>
@@ -34,4 +34,4 @@ function TagCard({ tag }: { tag: any }) {
   );
 }
 
-export default TagCard;
+export default TagRow;

@@ -2,6 +2,7 @@ import { readFileSync } from 'fs';
 import { GetStaticProps } from 'next';
 import path from 'path';
 import React, { Fragment } from 'react'
+import BlogList from '../../components/BlogList';
 import Card from '../../components/Card';
 import FeedHeader from '../../components/FeedHeader'
 import { Blog } from '../../model/Blog';
@@ -17,15 +18,7 @@ function Recent({
     <div>
       <FeedHeader activeTab={activeTab} />
 
-      {/* trending blogs */}
-      <div className='space-y-0.5 bg-slate-200'>
-        {blogs?.length &&
-          blogs.map((blog, index) => (
-            <Fragment key={index}>
-              <Card blog={blog} />
-            </Fragment>
-          ))}
-      </div>
+      <BlogList blogs={blogs}/>
     </div>
   )
 }
